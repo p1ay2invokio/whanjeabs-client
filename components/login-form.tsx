@@ -2,6 +2,7 @@
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
+import { Turnstile } from '@marsidev/react-turnstile'
 import {
   Card,
   CardContent,
@@ -16,11 +17,12 @@ import {
   FieldLabel,
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
-import { useState } from "react"
+import { useRef, useState } from "react"
 import toast from "react-hot-toast"
 import { useRouter } from "next/navigation"
 import { login } from "@/app/methods/auth.method"
 import { endpoint } from "@/app/methods/config"
+import Script from "next/script"
 
 export function LoginForm({
   className,
@@ -29,6 +31,9 @@ export function LoginForm({
 
   let [email, setEmail] = useState<string>('')
   let [password, setPassword] = useState<string>('')
+  let [CfToken, setCfToken] = useState('')
+
+  const cloudflare_ref = useRef<any>(null)
 
 
   let navigate = useRouter()
@@ -36,14 +41,24 @@ export function LoginForm({
   const Login = async () => {
 
     if (email && password) {
-      toast.promise(login(email, password), {
-        loading: 'กำลังเข้าสู่ระบบ',
-        success: 'เข้าสู่ระบบสำเร็จ!',
-        error: 'อีเมลล์หรือรหัสผ่านไม่ถูกต้อง!'
-      }).then((res: any) => {
-        localStorage.setItem("token", res.token)
-        navigate.push("/dashboard")
-      })
+
+      if (CfToken) {
+        toast.promise(login(email, password, CfToken), {
+          loading: 'กำลังเข้าสู่ระบบ',
+          success: 'เข้าสู่ระบบสำเร็จ!',
+        }).then((res: any) => {
+          localStorage.setItem("token", res.token)
+          navigate.push("/dashboard")
+        }).catch((err) => {
+          toast.error(err.message)
+          setCfToken('')
+          if (cloudflare_ref.current) {
+            cloudflare_ref.current.reset()
+          }
+        })
+      }else{
+        toast.error("โปรดยอมรับ cloudflare!")
+      }
     } else {
       toast.error("กรอกข้อมูลให้ครบถ้วน!")
     }
@@ -91,6 +106,11 @@ export function LoginForm({
             }} variant="outline" className="cursor-pointer" type="button">
               Login with Google
             </Button>
+
+            <Turnstile ref={cloudflare_ref} onSuccess={(token) => {
+              setCfToken(token)
+            }} siteKey="0x4AAAAAACHjFSktr5jiJfaG" />
+
             <FieldDescription className="text-center">
               Don&apos;t have an account? <a href="/register">Sign up</a>
             </FieldDescription>

@@ -14,10 +14,11 @@ import {
   FieldLabel,
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
-import { useState } from "react"
+import { useRef, useState } from "react"
 import { signup } from "@/app/methods/auth.method"
 import toast from "react-hot-toast"
 import { useRouter } from "next/navigation"
+import { Turnstile } from "@marsidev/react-turnstile"
 
 export function SignupForm({
   className,
@@ -27,6 +28,10 @@ export function SignupForm({
   let [email, setEmail] = useState('')
   let [password, setPassword] = useState('')
   let [confirmPassword, setConfirmPassword] = useState('')
+
+  let [CfToken, setCfToken] = useState('')
+
+  let cloudflare_ref = useRef<any>(null)
 
   let navigate = useRouter()
 
@@ -81,16 +86,23 @@ export function SignupForm({
               <Button onClick={async () => {
                 if (email && password && confirmPassword) {
                   if (email.includes('@')) {
-                    let res: any = await signup(email, password)
 
-                    console.log(res)
+                    if (CfToken) {
+                      let res: any = await signup(email, password, CfToken)
 
-                    if (res.success) {
-                      localStorage.setItem("token", res.token)
-                      toast.success(res.message)
-                      navigate.push("/dashboard")
-                    } else {
-                      toast.error(res.message)
+                      console.log(res)
+
+                      if (res.success) {
+                        localStorage.setItem("token", res.token)
+                        toast.success(res.message)
+                        navigate.push("/dashboard")
+                      } else {
+                        toast.error(res.message)
+                        setCfToken('')
+                        cloudflare_ref.current.reset()
+                      }
+                    }else{
+                      toast.error("โปรดยืนยันตัวตน!")
                     }
                   } else {
                     toast.error("Not an email")
@@ -100,6 +112,11 @@ export function SignupForm({
                 }
 
               }} type="submit">Create Account</Button>
+              <div className="flex justify-center items-center">
+                <Turnstile ref={cloudflare_ref} onSuccess={(token) => {
+                  setCfToken(token)
+                }} siteKey="0x4AAAAAACHjFSktr5jiJfaG" />
+              </div>
               <FieldDescription className="text-center">
                 Already have an account? <a href="/login">Sign in</a>
               </FieldDescription>

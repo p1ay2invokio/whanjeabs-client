@@ -2,11 +2,12 @@ import axios, { AxiosError } from 'axios'
 import { endpoint } from './config'
 import toast from 'react-hot-toast'
 
-export const login = async (email: string, password: string) => {
+export const login = async (email: string, password: string, CfToken: string) => {
     return new Promise(async (resolve, reject) => {
         let res: any = await axios.post(`${endpoint}/login`, {
             email: email,
-            password: password
+            password: password,
+            CfToken: CfToken
         }).then((res) => {
             setTimeout(() => {
                 resolve(res.data)
@@ -17,11 +18,12 @@ export const login = async (email: string, password: string) => {
     })
 }
 
-export const signup = async (email: string, password: string) => {
+export const signup = async (email: string, password: string, CfToken: string) => {
     return new Promise(async (resolve, reject) => {
         let res: any = await axios.post(`${endpoint}/signup`, {
             email: email,
-            password: password
+            password: password,
+            CfToken: CfToken
         }).then((res) => {
             setTimeout(() => {
                 resolve(res.data)
