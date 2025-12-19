@@ -102,7 +102,7 @@ export function LoginForm({
               Login()
             }} type="submit">Login</Button>
             <Button onClick={() => {
-              window.location.href = `http://localhost:3001/api/auth/google`
+              window.location.href = `${endpoint}/auth/google`
             }} variant="outline" className="cursor-pointer" type="button">
               Login with Google
             </Button>
