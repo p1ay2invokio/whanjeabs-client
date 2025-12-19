@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <div className="w-full h-dvh bg-slate-800 relative">
 
-      {/* <Prism
+      <Prism
         animationType="3drotate"
         timeScale={0.3}
         height={3.5}
@@ -24,9 +24,9 @@ export default function Home() {
         colorFrequency={1}
         noise={0}
         glow={1}
-      /> */}
+      />
 
-      <LightRays followMouse={false} />
+      {/* <LightRays followMouse={false} /> */}
 
       <div className="w-full h-full flex-col gap-2 absolute top-0 left-0  z-11 flex justify-center items-center">
         <div className="w-120 border border-gray-400 pl-15 pr-15 h-13 bg-white/40 backdrop-blur-lg rounded-full absolute top-10 grid grid-cols-4">
@@ -63,9 +63,9 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="h-[100dvh] bg-slate-800">
+      {/* <div className="h-[100dvh] bg-slate-800">
 
-      </div>
+      </div> */}
 
     </div>
   );
