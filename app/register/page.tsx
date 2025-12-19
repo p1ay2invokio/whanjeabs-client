@@ -24,31 +24,6 @@ import { endpoint } from "@/app/methods/config"
 import { SignupForm } from "@/components/signup-form"
 
 const Register = () => {
-
-
-    let [email, setEmail] = useState<string>('')
-    let [password, setPassword] = useState<string>('')
-
-
-    let navigate = useRouter()
-
-    const Login = async () => {
-
-        if (email && password) {
-            toast.promise(login(email, password), {
-                loading: 'กำลังเข้าสู่ระบบ',
-                success: 'เข้าสู่ระบบสำเร็จ!',
-                error: 'อีเมลล์หรือรหัสผ่านไม่ถูกต้อง!'
-            }).then((res: any) => {
-                localStorage.setItem("token", res.token)
-                navigate.push("/dashboard")
-            })
-        } else {
-            toast.error("กรอกข้อมูลให้ครบถ้วน!")
-        }
-    }
-
-
     return (
         <div className="flex justify-center items-center h-dvh">
             <SignupForm/>

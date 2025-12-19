@@ -115,7 +115,7 @@ export function SignupForm({
               <div className="flex justify-center items-center">
                 <Turnstile ref={cloudflare_ref} onSuccess={(token) => {
                   setCfToken(token)
-                }} siteKey="0x4AAAAAACHjFSktr5jiJfaG" />
+                }} siteKey="0x4AAAAAACHi9nzAtClj6Rae" />
               </div>
               <FieldDescription className="text-center">
                 Already have an account? <a href="/login">Sign in</a>

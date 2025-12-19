@@ -109,7 +109,7 @@ export function LoginForm({
 
             <Turnstile ref={cloudflare_ref} onSuccess={(token) => {
               setCfToken(token)
-            }} siteKey="0x4AAAAAACHjFSktr5jiJfaG" />
+            }} siteKey="0x4AAAAAACHi9nzAtClj6Rae" />
 
             <FieldDescription className="text-center">
               Don&apos;t have an account? <a href="/register">Sign up</a>
