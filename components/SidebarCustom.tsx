@@ -132,7 +132,7 @@ const SidebarCustom = () => {
 
                         CustomAlert().then((res) => {
                             if (res) {
-                                // localStorage.removeItem("token")
+                                localStorage.removeItem("token")
                                 window.location.href = "/"
                             }
                         })
