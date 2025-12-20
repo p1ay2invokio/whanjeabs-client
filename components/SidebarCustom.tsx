@@ -60,24 +60,19 @@ const SidebarCustom = () => {
 
                     <SidebarGroupLabel>{decode ? decode.email : 'Utils'}</SidebarGroupLabel>
 
-                    <SidebarMenuItem>
                         <SidebarMenuButton className="cursor-pointer" onClick={() => {
                             navigate.push("/dashboard")
                             if (isMobile) {
                                 toggleSidebar()
                             }
                         }}>Dashboard</SidebarMenuButton>
-                    </SidebarMenuItem>
-                    <SidebarMenuItem>
                         <SidebarMenuButton className="cursor-pointer" onClick={() => {
                             navigate.push("/credential")
                             if (isMobile) {
                                 toggleSidebar()
                             }
                         }}>Credentials</SidebarMenuButton>
-                    </SidebarMenuItem>
                     <SidebarMenu>
-                        <SidebarMenuItem>
                             <SidebarMenuButton className="cursor-pointer" onClick={() => {
                                 navigate.push("/line-cannon")
                                 if (isMobile) {
@@ -88,12 +83,9 @@ const SidebarCustom = () => {
                                 <div className="bg-blue-200/40 p-3 pt-0 pb-0 rounded-lg h-5 absolute right-2 text-blue-500 font-[medium]">new</div>
                             </SidebarMenuButton>
 
-                        </SidebarMenuItem>
-
                     </SidebarMenu>
 
                     <SidebarMenu>
-                        <SidebarMenuItem>
                             <SidebarMenuButton className="cursor-pointer" onClick={() => {
                                 navigate.push("/package")
                                 if (isMobile) {
@@ -103,16 +95,11 @@ const SidebarCustom = () => {
                                 <p>Package เสริม</p>
                                 <div className="bg-green-200/40 p-3 pt-0 pb-0 rounded-lg h-5 absolute right-2 text-green-500 font-[medium]">promotion</div>
                             </SidebarMenuButton>
-
-                        </SidebarMenuItem>
-
                     </SidebarMenu>
 
-                    <SidebarMenuItem>
                         <SidebarMenuButton className="cursor-pointer" onClick={() => {
                             window.open('https://documenter.getpostman.com/view/14047437/2sB3dMwAdW#9af66a95-57aa-4a69-91b4-fd8d28f39687', "_blank")
                         }}>Documentation</SidebarMenuButton>
-                    </SidebarMenuItem>
 
                 </SidebarGroup>
 
