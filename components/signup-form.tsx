@@ -51,13 +51,13 @@ export function SignupForm({
             <Field>
               <FieldLabel htmlFor="email">Email</FieldLabel>
               <Input
+                minLength={14}
                 id="email"
                 type="email"
-                placeholder="m@example.com"
+                placeholder="abcde@example.com"
                 required
                 onChange={(e) => {
                   setEmail(e.target.value)
-
                 }}
               />
             </Field>
@@ -65,7 +65,7 @@ export function SignupForm({
               <Field className="grid grid-cols-2 gap-4">
                 <Field>
                   <FieldLabel htmlFor="password">Password</FieldLabel>
-                  <Input onChange={(e) => {
+                  <Input minLength={8} onChange={(e) => {
                     setPassword(e.target.value)
                   }} id="password" type="password" required />
                 </Field>
@@ -73,7 +73,7 @@ export function SignupForm({
                   <FieldLabel htmlFor="confirm-password">
                     Confirm Password
                   </FieldLabel>
-                  <Input onChange={(e) => {
+                  <Input minLength={8} onChange={(e) => {
                     setConfirmPassword(e.target.value)
                   }} id="confirm-password" type="password" required />
                 </Field>
@@ -84,6 +84,27 @@ export function SignupForm({
             </Field>
             <Field>
               <Button onClick={async () => {
+
+                if (!email || !password || !confirmPassword) {
+                  toast.error("กรอกข้อมูลให้ครบถ้วน!")
+                  return
+                }
+
+                if (email.length < 14) {
+                  toast.error("email สั้นเกินไป!")
+                  return
+                }
+
+                if (password.length < 8) {
+                  toast.error("password สั้นเกินไป!")
+                  return
+                }
+
+                if (password != confirmPassword) {
+                  toast.error("password ไม่ตรงกัน!")
+                  return
+                }
+
                 if (email && password && confirmPassword) {
                   if (email.includes('@')) {
 
@@ -101,7 +122,7 @@ export function SignupForm({
                         setCfToken('')
                         cloudflare_ref.current.reset()
                       }
-                    }else{
+                    } else {
                       toast.error("โปรดยืนยันตัวตน!")
                     }
                   } else {

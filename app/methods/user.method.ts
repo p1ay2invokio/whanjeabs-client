@@ -1,12 +1,13 @@
 import axios from "axios"
 import { endpoint } from "./config"
+import { UserType } from "@/types/user"
 
 export const getUserDetail = async () => {
 
     let token = localStorage.getItem("token")
 
     if (token) {
-        let response = await axios.get(`${endpoint}/user`, {
+        let response = await axios.get<UserType>(`${endpoint}/user`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }

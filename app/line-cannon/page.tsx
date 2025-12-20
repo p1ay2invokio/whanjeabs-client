@@ -7,6 +7,7 @@ import { useState } from "react"
 import { pushNotify } from "../methods/notify.method"
 import toast from "react-hot-toast"
 import SidebarCustom from "@/components/SidebarCustom"
+import Header from "@/components/Header"
 
 const LineCannon = () => {
 
@@ -19,9 +20,9 @@ const LineCannon = () => {
     let [delay, setDelay] = useState(false)
 
     return (
-        <div className="flex">
-            <SidebarCustom />
-            <div className="p-3 flex-1">
+
+        < div className="flex-1" >
+            <div className="p-3">
                 <div className="flex gap-3 flex-col">
                     <p className="font-[kregular] text-gray-500">ลองยิงข้อความไป Line Group / Line Chat</p>
                     <div className="flex gap-2 flex-col">
@@ -58,7 +59,7 @@ const LineCannon = () => {
                         console.log(api_key)
 
                         let res = await pushNotify(api_key, channel_access, to, message)
-                        
+
 
                         if (!res.success) {
                             return toast.error(res.message)

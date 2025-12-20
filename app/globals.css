@@ -116,6 +116,7 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -161,6 +162,11 @@
   src: url('../public/fonts/Kanit-Bold.ttf');
 }
 
-::-webkit-scrollbar{
+::-webkit-scrollbar {
   display: none;
+}
+
+html,
+body {
+  overscroll-behavior: none
 }

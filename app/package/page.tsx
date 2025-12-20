@@ -31,7 +31,7 @@ const Package = () => {
 
     return (
         <div className="flex">
-            <SidebarCustom />
+            {/* <SidebarCustom /> */}
 
             {modal && select ? <div onClick={(e) => {
                 if (e.target == e.currentTarget) {
@@ -101,14 +101,14 @@ const Package = () => {
 
                 <p className="font-[kregular] text-gray-500 mt-5">โปรส่งท้ายปี 🎉</p>
 
-                <div className="p-3 flex gap-5">
+                <div className="p-3 grid gird-cols-1 lg:grid-cols-3 sm:grid-cols-2 w-200 gap-5">
 
                     {products && products.length > 0 ? products.map((item: any) => {
 
                         let color_text = item.name == "Economy" ? "text-blue-400" : item.name == "Premium" ? "text-yellow-400" : item.name == "Business" ? "text-red-400" : ''
 
                         let color_bg = item.name == "Economy" ? "bg-blue-400/15" : item.name == "Premium" ? "bg-yellow-400/15" : item.name == "Business" ? "bg-red-400/15" : ''
-                        
+
                         let color_bg_btn = item.name == "Economy" ? "bg-blue-400" : item.name == "Premium" ? "bg-yellow-400" : item.name == "Business" ? "bg-red-400" : ''
 
                         return (

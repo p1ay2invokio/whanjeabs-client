@@ -10,6 +10,7 @@ import { getMyKey, getUserDetail } from "../methods/user.method";
 import { keygen } from "../methods/keygen.method";
 import { create } from "zustand";
 import { useKeyStore } from "../stores/useKeyStore";
+import Header from "@/components/Header";
 
 const Credential = () => {
 
@@ -28,10 +29,8 @@ const Credential = () => {
     }, [refresh])
 
     return (
-        <div className="flex">
-            <SidebarCustom />
-            <div className="flex-1 p-3">
-
+        < div className="flex-1" >
+            <div className="p-3">
                 {modal && api_key ? <div className={`w-full h-full absolute left-0 top-0 bg-black/20 z-11 flex justify-center items-center`}>
                     <div className="w-[400px] h-[200px] shadow bg-white rounded-xl flex justify-center items-center flex-col">
                         <p className="font-[regular] text-[14px] text-red-400">Keep your API key safe. Never expose or share it publicly.</p>

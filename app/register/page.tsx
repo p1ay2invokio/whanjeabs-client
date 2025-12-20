@@ -25,7 +25,7 @@ import { SignupForm } from "@/components/signup-form"
 
 const Register = () => {
     return (
-        <div className="flex justify-center items-center h-dvh">
+        <div className="flex justify-center items-center w-full h-dvh">
             <SignupForm/>
         </div>
     )

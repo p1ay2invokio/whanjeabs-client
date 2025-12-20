@@ -15,7 +15,8 @@ export default function Home() {
     <div className="w-full h-dvh bg-slate-800 relative">
 
       <Prism
-        animationType="3drotate"
+      
+        animationType="rotate"
         timeScale={0.3}
         height={3.5}
         baseWidth={5}
@@ -23,7 +24,8 @@ export default function Home() {
         hueShift={0}
         colorFrequency={1}
         noise={0}
-        glow={1}
+        glow={0.5}
+        offset={{y: -100}}
       />
 
       {/* <LightRays followMouse={false} /> */}

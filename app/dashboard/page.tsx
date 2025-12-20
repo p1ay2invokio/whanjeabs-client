@@ -4,10 +4,13 @@ import { useEffect, useState } from "react"
 import { getUserDetail } from "../methods/user.method"
 import SidebarCustom from "@/components/SidebarCustom"
 import { useRouter } from "next/navigation"
+import Header from "@/components/Header"
+import CustomAlert from "@/components/CustomAlert"
+import { UserType } from "@/types/user"
 
 const Dashboard = () => {
 
-    let [userData, setUserData] = useState<any>(null)
+    let [userData, setUserData] = useState<UserType>()
 
     let navigate = useRouter()
 
@@ -21,12 +24,13 @@ const Dashboard = () => {
     }, [])
 
     return (
-        <div className="flex">
-            <SidebarCustom />
-            <div className="p-3 flex-1">
-                <p className="mb-2">Dashboard</p>
+        < div className="flex-1" >
 
-                <div className="grid grid-cols-2 gap-3">
+
+            <div className="p-3" >
+                <p className="mb-2 text-gray-400 font-[regular]">Dashboard</p>
+
+                <div className="grid grid-cols-1 gap-3">
                     {userData ? <div className="w-full h-80 rounded-lg grid grid-cols-2 gap-2">
                         <div className="w-full h-full border relative rounded-lg p-2 flex justify-center items-center">
                             <p className="font-[regular] absolute left-2 top-2 text-[14px]">requests / months</p>
@@ -43,7 +47,7 @@ const Dashboard = () => {
                         </div>
                         <div className="w-full h-full border relative rounded-lg p-2 flex justify-center items-center">
                             <p className="font-[regular] absolute left-2 top-2 text-[14px]">costs</p>
-                            <p className="font-[bold] text-[22px]">Free</p>
+                            <p className="font-[bold] text-[22px]">{userData.request_max == 2000 ? 'Economy' : userData.request_max == 10000 ? 'Premium' : userData.request_max == 50000 ? 'Business' : 'Free'}</p>
                         </div>
                         <div className="w-full h-full border relative rounded-lg p-2 flex justify-center items-center">
                             <p className="font-[regular] absolute left-2 top-2 text-[14px]">Status</p>
@@ -54,8 +58,8 @@ const Dashboard = () => {
                         <p>Available soon</p>
                     </div>
                 </div>
-            </div>
-        </div>
+            </div >
+        </div >
     )
 }
 
