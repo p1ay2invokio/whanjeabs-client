@@ -37,7 +37,7 @@ const Package = () => {
                 if (e.target == e.currentTarget) {
                     setModal(false)
                 }
-            }} className="w-full h-full bg-black/20 absolute left-0 top-0 z-11 flex justify-center items-center">
+            }} className="w-full h-full bg-black/20 fixed left-0 top-0 z-11 flex justify-center items-center">
                 <div className="w-95 h-140 bg-white rounded-xl p-5 gap-5 flex flex-col">
                     {/* <p className="font-[bold] text-xl">Economy</p> */}
 
