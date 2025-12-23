@@ -20,16 +20,24 @@ const Credential = () => {
     let [modal, setModal] = useState(false)
     let [refresh, setRefresh] = useState(0)
 
+    let [loading, setLoading] = useState(true)
+
     useEffect(() => {
         (async () => {
             let res_mykey = await getMyKey()
             // console.log(mykey)
             setMyKey(res_mykey.key)
+            setLoading(false)
         })()
     }, [refresh])
 
+    if (loading) {
+        return null
+    }
+
     return (
         < div className="flex-1" >
+
             <div className="p-3">
                 {modal && api_key ? <div className={`w-full h-full absolute left-0 top-0 bg-black/20 z-11 flex justify-center items-center`}>
                     <div className="w-[400px] h-[200px] shadow bg-white rounded-xl flex justify-center items-center flex-col">

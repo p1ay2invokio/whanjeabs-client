@@ -11,6 +11,7 @@ import { UserType } from "@/types/user"
 const Dashboard = () => {
 
     let [userData, setUserData] = useState<UserType>()
+    let [loading, setLoading] = useState(true)
 
     let navigate = useRouter()
 
@@ -20,8 +21,13 @@ const Dashboard = () => {
 
             console.log(user_data)
             setUserData(user_data)
+            setLoading(false)
         })()
     }, [])
+
+    if (loading) {
+        return null
+    }
 
     return (
         < div className="flex-1" >

@@ -18,6 +18,8 @@ const Package = () => {
     let [products, setProducts] = useState<any>([])
     let [select, setSelect] = useState<any>(null)
 
+    let [loading, setLoading] = useState(true)
+
     useEffect(() => {
         (async () => {
             let pro = new Product()
@@ -26,8 +28,13 @@ const Package = () => {
 
             setProducts(res)
             console.log(res)
+            setLoading(false)
         })()
     }, [])
+
+    if (loading) {
+        return null
+    }
 
     return (
         <div className="flex">

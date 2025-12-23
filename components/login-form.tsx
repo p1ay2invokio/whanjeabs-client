@@ -74,8 +74,8 @@ export function LoginForm({
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <FieldLabel htmlFor="email">Email</FieldLabel>
-          <Input
+          <FieldLabel className="font-[regular]" htmlFor="email">Email</FieldLabel>
+          <Input className="font-[regular]"
             id="email"
             type="email"
             placeholder="m@example.com"
@@ -84,16 +84,16 @@ export function LoginForm({
             }}
           />
           <Field>
-            <div className="flex items-center mt-2">
-              <FieldLabel htmlFor="password">Password</FieldLabel>
+            <div className="flex items-center mt-2 mb-[-10px]">
+              <FieldLabel className="font-[regular]" htmlFor="password">Password</FieldLabel>
               <a
                 href="#"
-                className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
+                className="ml-auto inline-block text-sm font-[regular] underline-offset-4 hover:underline"
               >
                 Forgot your password?
               </a>
             </div>
-            <Input onChange={(e) => {
+            <Input className="font-[regular]" onChange={(e) => {
               setPassword(e.target.value)
             }} id="password" type="password" />
           </Field>
@@ -107,7 +107,7 @@ export function LoginForm({
               Login with Google
             </Button>
 
-            <Turnstile ref={cloudflare_ref} onSuccess={(token) => {
+            <Turnstile options={{theme: 'light'}} ref={cloudflare_ref} onSuccess={(token) => {
               setCfToken(token)
             }} siteKey="0x4AAAAAACHi9nzAtClj6Rae" />
 

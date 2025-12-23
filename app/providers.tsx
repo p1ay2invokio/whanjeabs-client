@@ -12,7 +12,7 @@ export const Providers = ({ children }: { children: any }) => {
 
     return (
         <SidebarProvider>
-            {path != '/login' && path != '/register' && path != '/' ? <>
+            {path != '/login' && path != '/register' && path != '/' && path != '/about' ? <>
                 <SidebarCustom />
                 <SidebarTrigger className="md:hidden  ml-3 mt-3" />
             </> : null}
